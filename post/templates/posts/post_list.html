@@ -5,12 +5,17 @@
 {% block content %}
     <h1>Dashboard</h1>
     {% for post in posts %}
-        <h2>
-            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-        </h2>
-        {% if user.is_authenticated %}
-            Published {{ post.publish }} by {{ post.author }}
-        {% endif %}
+        <div class="post">
+            <h2 id="title">
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </h2>
+            <p>{{ post.body|truncatewords:30 }}</p>
+            {% if user.is_authenticated %}
+                <p id="date">
+                    Published {{ post.publish }} by {{ post.author }}
+                </p>
+            {% endif %}
+        </div>
     {% endfor %}
 {% endblock content %}
 
