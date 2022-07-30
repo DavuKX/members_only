@@ -3,14 +3,16 @@
 {% block title %}New post{% endblock title %}
 
 {% block content %}
-    {% if new_post %}
-        <h2>Your post has been added.</h2>
-    {% else %}
-        <p>Please fill the following form:</p>
-        <form action="" method="post">
-            {{ post_form.as_p }}
-            {% csrf_token %}
-            <p><input type="submit" value="Add post"></p>
-        </form>
-    {% endif %}
+    <div class="flex flex-col items-center text-center">
+        {% if new_post %}
+            <h2>Your post has been added.</h2>
+        {% else %}
+            <p class="p-10 text-xl">Please fill the following form:</p>
+            <form action="" method="post">
+                {{ post_form.as_p }}
+                {% csrf_token %}
+                <p class="border-2 p-4 rounded-md m-6 hover:to-indigo-800"><input type="submit" value="Add post"></p>
+            </form>
+        {% endif %}
+    </div>
 {% endblock content %}

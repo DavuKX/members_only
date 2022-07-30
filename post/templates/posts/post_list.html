@@ -3,20 +3,28 @@
 {% block title %}Dashboard{% endblock title %}
 
 {% block content %}
-    <h1>Dashboard</h1>
-    <a href="{% url 'post:new_post' %}">Create a new post</a>
-    {% for post in posts %}
-        <div class="post">
-            <h2 id="title">
-                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-            </h2>
-            <p>{{ post.body|truncatewords:30 }}</p>
-            {% if user.is_authenticated %}
-                <p id="date">
-                    Published {{ post.publish }} by {{ post.author }}
-                </p>
-            {% endif %}
+    {% if user.is_authenticated %}
+        <div class="text-center m-8">
+            <a class="border-2 p-5 hover:bg-slate-400" href="{% url 'post:new_post' %}">Create a new post</a>
         </div>
-    {% endfor %}
+    {% endif %}
+    <div class="mb-auto flex-grow grid grid-cols-4 content-start gap-10 place-items-center">
+        {% for post in posts %}
+            <div class="flex flex-col max-w-sm rounded overflow-hidden shadow-lg px-4 py-4 w-full h-full">
+                <h2 id="title" class="font-bold text-xl mb-2 hover:text-slate-600">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </h2>
+                <div class="mb-auto flex-grow">
+                    <p class="text-gray-700 text-base">{{ post.body|truncatewords:20 }}</p>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="mt-5">
+                    <p class="text-gray-900 leading-none">{{ post.author }}</p>
+                    <p class="text-gray-600 text-base">{{ post.publish }}</p>    
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock content %}
 

@@ -6,27 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>{% block title %}{% endblock title %}</title>
 </head>
-<body>
-   <div id="header">
-    <span>Something</span>
-    {% if request.user.is_authenticated %}
-        <ul class="menu">
-            <li>Something</li>
-        </ul> 
-    {% endif %}
-    <span class="user">
-        {% if request.user.is_authenticated %}
-            Hello {{ request.user.first_name }},
-            <a href="{% url 'logout' %}">Logout</a>
-        {% else %}
-            <a href="{% url 'login' %}">Log-in</a>
-        {% endif %}
+<body class="flex flex-col h-screen">
+   <div id="header" class="flex bg-slate-700 px-4 py-6 justify-between items-center mx-auto mb-3 text-white text-xl w-full">
+        <span>Members only</span>
+        <ul class="flex flex-wrap px-10">
+            <li><a class="px-8 hover:text-slate-400" href="{% url 'post:post_list' %}">Home</a></li>
+            {% if user.is_authenticated %}
+                <li>Hello {{ request.user.first_name }},
+                    <a class="hover:text-slate-400" href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Log in</a></li>
+            {% endif %}
+        </ul>
     </span>
    </div> 
-   <div id="content">
-    {% block content %}{% endblock content %}
-   </div>
+   <main id="content" class="mb-auto flex-grow">
+        {% block content %}{% endblock content %}
+   </main>
+   <footer class="bg-slate-700 px-4 py-6 mx-auto mt-3 text-white text-xl w-full text-center">
+        <p>&copy; 2022 Duvan Navarro</p>
+   </footer>
 </body>
 </html>
