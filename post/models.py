@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.text import slugify
 
 # Create your models here.
 class Post(models.Model):
@@ -16,7 +17,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Published')
 
     class Meta:
         verbose_name = ("Post")
@@ -33,3 +34,8 @@ class Post(models.Model):
             self.publish.day,
             self.slug,
         ])
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        self.status = 'Published'
+        super(Post, self).save(*args, **kwargs)
