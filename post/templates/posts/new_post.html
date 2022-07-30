@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
+{% load tailwind_filters %}
 
 {% block title %}New post{% endblock title %}
 
 {% block content %}
-    <div class="flex flex-col items-center text-center">
+    <div class="flex flex-col items-center text-center ">
         {% if new_post %}
             <h2>Your post has been added.</h2>
         {% else %}
             <p class="p-10 text-xl">Please fill the following form:</p>
             <form action="" method="post">
-                {{ post_form.as_p }}
+                {{ post_form|crispy }}
                 {% csrf_token %}
-                <p class="border-2 p-4 rounded-md m-6 hover:to-indigo-800"><input type="submit" value="Add post"></p>
+                <button class="bg-transparent hover:bg-indigo-400 text-indigo-600 font-semibold hover:text-white py-2 px-4 border border-blue-400 hover:border-transparent rounded"><input type="submit" value="Add post"></button>
             </form>
         {% endif %}
     </div>

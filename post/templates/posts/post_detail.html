@@ -3,11 +3,15 @@
 {% block title %}{{ post.title }}{% endblock title %}
 
 {% block content %}
-    <h1>{{ post.title }}</h1>
-    {% if user.is_authenticated %}
-        <p id="date">
-            Published {{ post.publish }} by {{ post.author }}
-        </p>
-    {% endif %}
-    {{ post.body|linebreaks }}
+    <div class="flex flex-col font-mono">
+        <h1 class="text-xl pb-5 font-bold">{{ post.title }}</h1>
+        <p class="">{{ post.body|linebreaks }}</p>
+        {% if user.is_authenticated %}
+            <p id="date" class="py-5">
+                Published {{ post.publish }} by {{ post.author }}
+            </p>
+        {% endif %}
+        
+    
+    </div>
 {% endblock content %}

@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'post.apps.PostConfig',
-    'tailwind',
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
-TAILWIND_APP_NAME = 'theme'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
 
 INTERNAL_IPS = [
     "127.0.0.1",
