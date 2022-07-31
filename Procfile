@@ -1,1 +1,1 @@
-web: gunicorn members_only.wsgi
+web: gunicorn project.wsgi
