@@ -12,13 +12,14 @@
 <body class="flex flex-col h-screen">
    <div id="header" class="flex bg-slate-700 px-4 py-6 justify-between items-center mx-auto mb-3 text-white text-xl w-full">
         <span>Members only</span>
-        <ul class="flex flex-wrap px-10">
+        <ul class="flex flex-wrap px-10 justify-between">
             <li><a class="px-8 hover:text-slate-400" href="{% url 'post:post_list' %}">Home</a></li>
             {% if user.is_authenticated %}
                 <li>Hello {{ request.user.first_name }},
-                    <a class="hover:text-slate-400" href="{% url 'logout' %}">Logout</a></li>
+                    <a class="px-8 hover:text-slate-400" href="{% url 'logout' %}">Logout</a></li>
             {% else %}
-                <li><a href="{% url 'login' %}">Log in</a></li>
+                <li><a class="px-8 hover:text-slate-400" href="{% url 'login' %}">Login</a></li>
+                <li><a class="px-8 hover:text-slate-400" href="{% url 'register' %}">Sign up</a></li>
             {% endif %}
         </ul>
     </span>

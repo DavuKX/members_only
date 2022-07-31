@@ -8,7 +8,7 @@
             <a class="border-2 p-5 hover:bg-slate-400" href="{% url 'post:new_post' %}">Create a new post</a>
         </div>
     {% endif %}
-    <div class="mb-auto flex-grow grid grid-cols-4 content-start gap-10 place-items-center">
+    <div class="mb-auto flex-grow grid grid-cols-1 md:grid-cols-4 content-start gap-10 place-items-center">
         {% for post in posts %}
             <div class="flex flex-col max-w-sm rounded overflow-hidden shadow-lg px-4 py-4 w-full h-full">
                 <h2 id="title" class="font-bold text-xl mb-2 hover:text-slate-600">
